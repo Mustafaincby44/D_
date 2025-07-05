@@ -14,28 +14,23 @@
       background-size: 400% 400%;
       animation: gradientBG 15s ease infinite;
     }
-
     @keyframes gradientBG {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-
     @keyframes pulse {
       0%, 100% { box-shadow: 0 0 25px 10px rgba(45, 212, 191, 0.5); transform: translateX(-50%) scale(1.05); }
       50% { box-shadow: 0 0 40px 20px rgba(45, 212, 191, 0.8); transform: translateX(-50%) scale(1.1); }
     }
-
     @keyframes success-animation {
       0% { opacity: 0; transform: translateY(30px) scale(0.9); }
       50% { opacity: 0.7; transform: translateY(10px) scale(1.05); }
       100% { opacity: 1; transform: translateY(0) scale(1); }
     }
-
     .pacifico-regular {
       font-family: 'Pacifico', cursive;
     }
-
     #noBtn {
       position: absolute;
       transition: top 0.2s ease-out, left 0.2s ease-out;
@@ -43,22 +38,18 @@
       font-size: 1.1rem;
       padding: 1rem 2rem;
     }
-
     #yesBtn {
       position: absolute;
       transition: transform 0.3s ease;
       font-size: 1.1rem;
       padding: 1rem 2rem;
     }
-
     .pulse-animation {
       animation: pulse 1.5s infinite;
     }
-
     .success-animate {
       animation: success-animation 1s ease-out forwards;
     }
-
     .confetti {
       position: fixed;
       width: 10px;
@@ -68,14 +59,12 @@
       animation: fall 3s linear forwards;
       z-index: 100;
     }
-
     @keyframes fall {
       to {
         transform: translateY(100vh) rotate(360deg);
         opacity: 0;
       }
     }
-
     #success-screen {
       padding-top: 20px;
       display: flex;
@@ -89,10 +78,12 @@
 </head>
 <body class="flex items-center justify-center h-screen p-4">
   <div id="main-container" class="relative text-center p-6 md:p-8 bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl max-w-md w-full mx-auto transition-all duration-500" style="min-height: 450px;">
-    
+
     <!-- Soru ekranı -->
     <div id="question-screen">
-      <img src="https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-love-bubu-dudu.gif" class="mx-auto mb-4 rounded-lg w-48 h-auto" />
+      <!-- Burada sadece 1 tane ayıcık -->
+      <img src="https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-love-bubu-dudu.gif" 
+           class="mx-auto mb-4 rounded-lg w-48 h-auto" alt="Soru soran ayıcık" />
       <h1 id="question-text" class="text-2xl md:text-3xl font-bold text-gray-800 mb-2 pacifico-regular">Beni seviyor musun?</h1>
       <p id="message-text" class="text-gray-600 min-h-[24px] mb-6"></p>
       <div id="buttons-container" class="w-full h-32 relative">
@@ -105,11 +96,11 @@
       </div>
     </div>
 
-    <!-- Evet ekranı -->
+    <!-- Evet ekranı (başlangıçta gizli) -->
     <div id="success-screen" class="hidden">
-      <!-- Tek ayıcık animasyonu -->
-      <img src="https://media.tenor.com/p8d_iO1_3tkAAAAi/bubu-dudu-bubu.gif" alt="Sarılan ayıcık" class="mx-auto mb-4 rounded-lg w-48 h-auto success-animate" style="animation-delay: 0.2s;" />
-
+      <!-- Sadece 1 tane ayıcık -->
+      <img src="https://media.tenor.com/p8d_iO1_3tkAAAAi/bubu-dudu-bubu.gif" 
+           alt="Sarılan ayıcık" class="mx-auto mb-4 rounded-lg w-48 h-auto success-animate" style="animation-delay: 0.2s;" />
       <h1 class="text-4xl md:text-5xl font-bold text-rose-500 pacifico-regular success-animate" style="animation-delay: 0.4s;">Biliyordum!</h1>
       <p class="text-gray-700 mt-4 text-lg success-animate" style="animation-delay: 0.8s;">Ben de seni çooook seviyorum! ❤️ Ballı turtam benim</p>
     </div>
