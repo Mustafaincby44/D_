@@ -1,3 +1,5 @@
-<!-- Güvenlik bildirimi -->
-<!-- Bu sayfa tamamen eğlence ve kişisel bir aşk sorusu için yapılmıştır.
-Kullanıcıdan hiçbir bilgi veya şifre alınmaz. Phishing değildir. -->
+Bu proje tamamen eğlence ve duygusal etkileşim amacıyla yapılmıştır. 
+Kullanıcıdan hiçbir bilgi toplanmaz. Phishing içermez.
+
+✨ Kodlar: HTML, TailwindCSS, Vanilla JS
+💖 Yapımcı: Mustafa
