@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sana Çok Önemli Bir Sorum Var...</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      overflow: hidden;
+      background: linear-gradient(-45deg, #f8b195, #f67280, #c06c84, #6c5b7b);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 25px 10px rgba(45, 212, 191, 0.5); transform: translateX(-50%) scale(1.05); }
+      50% { box-shadow: 0 0 40px 20px rgba(45, 212, 191, 0.8); transform: translateX(-50%) scale(1.1); }
+    }
+
+    @keyframes success-animation {
+      0% { opacity: 0; transform: translateY(20px) scale(0.9); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .pacifico-regular {
+      font-family: 'Pacifico', cursive;
+    }
+
+    #noBtn {
+      position: absolute;
+      transition: top 0.2s ease-out, left 0.2s ease-out;
+      transform: none !important;
+    }
+
+    #yesBtn {
+      position: absolute;
+      transition: transform 0.3s ease;
+    }
+
+    .pulse-animation {
+      animation: pulse 1.5s infinite;
+    }
+
+    .success-animate {
+      animation: success-animation 0.8s ease-out forwards;
+    }
+
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background-color: #f00;
+      opacity: 0.7;
+      border-radius: 50%;
+      animation: fall 3s linear forwards;
+      z-index: 100;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center h-screen p-4">
+  <div id="main-container" class="relative text-center p-6 md:p-8 bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl max-w-md w-full mx-auto transition-all duration-500" style="min-height: 450px;">
+    
+    <!-- Soru ekranı -->
+    <div id="question-screen">
+      <img src="https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-love-bubu-dudu.gif" class="mx-auto mb-4 rounded-lg w-48 h-auto" />
+      <h1 id="question-text" class="text-2xl md:text-3xl font-bold text-gray-800 mb-2 pacifico-regular">Beni seviyor musun?</h1>
+      <p id="message-text" class="text-gray-600 min-h-[24px] mb-6"></p>
+      <div id="buttons-container" class="w-full h-32">
+        <button id="yesBtn" class="absolute left-[25%] top-[80%] bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 px-8 rounded-full shadow-lg z-10">
+          Evet
+        </button>
+        <button id="noBtn" class="bg-rose-500 hover:bg-rose-600 text-white font-bold py-3 px-8 rounded-full shadow-lg z-10"
+          style="position: absolute; left: 60%; top: 80%; transform: none !important;">
+          Hayır
+        </button>
+      </div>
+    </div>
+
+    <!-- Evet ekranı -->
+    <div id="success-screen" class="hidden">
+      <!-- Sarılan ayıcıklar -->
+      <img src="https://media.tenor.com/p8d_iO1_3tkAAAAi/bubu-dudu-bubu.gif" alt="Sarılan ayıcıklar" class="mx-auto mb-4 rounded-lg w-48 h-auto success-animate" style="animation-delay: 0.2s;" />
+
+      <!-- Soru soran ayıcık tekrar gösteriliyor -->
+      <img src="https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-love-bubu-dudu.gif" alt="Soru soran ayıcık" class="mx-auto mb-4 rounded-lg w-32 h-auto success-animate" style="animation-delay: 0.3s;" />
+
+      <h1 class="text-4xl md:text-5xl font-bold text-rose-500 pacifico-regular success-animate" style="animation-delay: 0.4s;">Biliyordum!</h1>
+      <p class="text-gray-700 mt-4 text-lg success-animate" style="animation-delay: 0.6s;">Ballı turtam, Ben de seni çooook seviyorum,! ❤️♥ </p>
+    </div>
+
+  </div>
+
+  <script>
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn = document.getElementById('noBtn');
+    const questionText = document.getElementById('question-text');
+    const messageText = document.getElementById('message-text');
+    const mainContainer = document.getElementById('main-container');
+    const questionScreen = document.getElementById('question-screen');
+    const successScreen = document.getElementById('success-screen');
+
+    let noClickCount = 0;
+
+    const noMessages = [
+      "Emin misin?", "Lütfen tekrar düşün...", "Kalbimi kırıyorsun :(",
+      "Bir daha düşün istersen?", "Cevabın 'Evet' olmalıydı!", "Tamam, pes ediyorum...",
+      "Ama ben seni çok seviyorum...", "Son kararın mı?", "Lütfeeen!"
+    ];
+
+    const handleNoClick = () => {
+      messageText.innerText = noMessages[noClickCount % noMessages.length];
+      noClickCount++;
+
+      const containerRect = mainContainer.getBoundingClientRect();
+      const btnRect = noBtn.getBoundingClientRect();
+
+      const maxX = containerRect.width - btnRect.width;
+      const maxY = containerRect.height - btnRect.height;
+
+      const randomX = Math.random() * maxX;
+      const randomY = Math.random() * maxY;
+
+      noBtn.style.left = `${randomX}px`;
+      noBtn.style.top = `${randomY}px`;
+      noBtn.style.transform = 'none';
+
+      if (noClickCount > 8) {
+        noBtn.style.display = 'none';
+        questionText.innerText = 'Artık kaçamazsın! :)';
+        messageText.innerText = '';
+        yesBtn.classList.add('pulse-animation');
+        yesBtn.style.left = '50%';
+        yesBtn.style.top = '80%';
+        yesBtn.style.transform = `translateX(-50%)`;
+      }
+    };
+
+    const createConfetti = () => {
+      const colors = ['#f67280', '#c06c84', '#6c5b7b', '#f8b195', '#ffcc00'];
+      for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.style.left = `${Math.random() * 100}vw`;
+        confetti.style.top = `${Math.random() * -50}vh`;
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.animationDelay = `${Math.random() * 2}s`;
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 3000);
+      }
+    };
+
+    noBtn.addEventListener('click', handleNoClick);
+    noBtn.addEventListener('touchstart', e => {
+      e.preventDefault();
+      handleNoClick();
+    });
+    noBtn.addEventListener('mouseover', () => {
+      if (noClickCount > 0) handleNoClick();
+    });
+
+    yesBtn.addEventListener('click', () => {
+      questionScreen.style.display = 'none';
+      successScreen.classList.remove('hidden');
+      createConfetti();
+    });
+  </script>
+</body>
+</html>
