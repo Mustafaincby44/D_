@@ -63,9 +63,8 @@
       position: fixed;
       width: 10px;
       height: 10px;
-      background-color: #f00;
-      opacity: 0.7;
       border-radius: 50%;
+      opacity: 0.7;
       animation: fall 3s linear forwards;
       z-index: 100;
     }
@@ -96,7 +95,7 @@
       <img src="https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-love-bubu-dudu.gif" class="mx-auto mb-4 rounded-lg w-48 h-auto" />
       <h1 id="question-text" class="text-2xl md:text-3xl font-bold text-gray-800 mb-2 pacifico-regular">Beni seviyor musun?</h1>
       <p id="message-text" class="text-gray-600 min-h-[24px] mb-6"></p>
-      <div id="buttons-container" class="w-full h-32">
+      <div id="buttons-container" class="w-full h-32 relative">
         <button id="yesBtn" class="absolute left-[25%] top-[80%] bg-teal-500 hover:bg-teal-600 text-white font-bold rounded-full shadow-lg z-10">
           Evet
         </button>
@@ -108,11 +107,8 @@
 
     <!-- Evet ekranı -->
     <div id="success-screen" class="hidden">
-      <!-- Sarılan ayıcıklar -->
-      <img src="https://media.tenor.com/p8d_iO1_3tkAAAAi/bubu-dudu-bubu.gif" alt="Sarılan ayıcıklar" class="mx-auto mb-4 rounded-lg w-48 h-auto success-animate" style="animation-delay: 0.2s;" />
-
-      <!-- Soru soran ayıcık tekrar gösteriliyor -->
-      <img src="https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-love-bubu-dudu.gif" alt="Soru soran ayıcık" class="mx-auto mb-4 rounded-lg w-32 h-auto success-animate" style="animation-delay: 0.3s;" />
+      <!-- Tek ayıcık animasyonu -->
+      <img src="https://media.tenor.com/p8d_iO1_3tkAAAAi/bubu-dudu-bubu.gif" alt="Sarılan ayıcık" class="mx-auto mb-4 rounded-lg w-48 h-auto success-animate" style="animation-delay: 0.2s;" />
 
       <h1 class="text-4xl md:text-5xl font-bold text-rose-500 pacifico-regular success-animate" style="animation-delay: 0.4s;">Biliyordum!</h1>
       <p class="text-gray-700 mt-4 text-lg success-animate" style="animation-delay: 0.8s;">Ben de seni çooook seviyorum! ❤️ Ballı turtam benim</p>
